@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="en_EN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Guild Rating</title>
+  <meta name="description" content="Quickly check pvp guild members' highest rating">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <div class="container-fluid js-main" style="padding: 20px;">
+    <h1><a href="/" style="color: #444;">Guild Rating</a></h1>
+
+    <hr />
+      {{#if homepage}}
+      <div class="jumbotron">
+        This is a little website to quickly check highest
+        achieved rating in characters' history, for a whole guild.
+      </div>
+      <hr />
+      {{/if}}
+
+    <form style="margin-bottom: 50px;" action="/check" method="GET">
+      <select name="region">
+        <option value="eu">EU</option>
+        <option value="us">US</option>
+      </select>
+
+      <input type="text" placeholder="Server" name="server" />
+
+      <input type="text" placeholder="Guild" name="guild" />
+      <input type="submit" class="btn-default" value="Check!" />
+    </form>
+
+    {{#if members.length}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Highest 2v2</th>
+          <th>Highest 3v3</th>
+          <th>Highest 5v5</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each members}}
+        <tr>
+          <td><img style="box-shadow: 0 0 10px #000;" src="{{img}}" /> {{name}}</td>
+          <td>{{highest2v2}}</td>
+          <td>{{highest3v3}}</td>
+          <td>{{highestRbg}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+
+    <hr />
+    <footer style="text-align: center;">
+      <p>Made with ❤ by <a href="https://github.com/mklabs">mklabs</a></p>
+      <p>Thanks to <a href="https://check-pvp.fr">https://check-pvp.fr</a> for inspiring this website.</p>
+    </footer>
+  </div>
+
+  <script src="/js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+  <script src="/js/main.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200930-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-124200930-1');
+  </script>
+</body>
+
+</html>
